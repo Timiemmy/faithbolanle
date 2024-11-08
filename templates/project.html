@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block content %}
+<section class="projects">
+    <h1>My Projects</h1>
+
+    <div class="projects__container">
+        <!-- Project 1 -->
+        {% for proj in object_list %}
+        <div class="project">
+            <img src="{{ proj.project_image.url }}" alt="{{ proj.project_title }}">
+            <div class="project__details">
+                <h2>{{ proj.project_title }}</h2>
+                <p>{{ proj.project_description | truncatewords:20}}</p>
+                <a href="{% url 'project_detail' proj.pk %}"><i class="ri-arrow-right-up-line"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+    <footer>
+        <div class="section__container footer__container" id="contact">
+            <h2>Contact</h2>
+            <p>
+                I'd love to hear from you! Whether you have a project in mind, a
+                question about my work, or just want to connect, feel free to reach
+                out. You can contact me via email or through my social media channels.
+                I am always excited to collaborate with like-minded individuals and
+                explore new opportunities.
+            </p>
+            <div class="mail__to">
+                <a href="mailto:faith.bolanle@yahoo.com">
+                    <span><i class="ri-mail-line"></i></span>
+                    faith.bolanle@yahoo.com
+                </a>
+            </div>
+            
+        </div>
+    </footer>
+
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="{% static 'js/style.js' %}"></script>
+
+{% endblock %}

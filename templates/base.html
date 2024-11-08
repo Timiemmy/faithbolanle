@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>Faith Bolanle Portfolio | Backend & bubble(no-code) developer</title>
+</head>
+<body>
+    <nav>
+        <div class="nav__bar">
+            <div class="nav__header">
+                <div class="nav__logo">
+                    <a href="{% url 'home' %}">FBolanle</a>
+                </div>
+                <div class="nav__menu__btn" id="menu-btn">
+                    <i class="ri-menu-line"></i>
+                </div>
+            </div>
+            <ul class="nav__links" id="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'project_list' %}">Projects</a></li>
+                <li><a href="{% url 'home' %}">Experiences</a></li>
+            </ul>
+        </div>
+    </nav>
+{% block content %}
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+
+
+    {% for info in information %}
+    <header class="section__container header__container" id="home">
+        <img src="{{ info.profile_pic.url }}" alt="header" />
+        <h1>I am <span>{{ info.first_name }} {{ info.last_name }} </span> <br />Backend Dev & <span>Bubble Dev</span></h1>
+        <p>
+            {{info.description}}
+        </p>
+        <div class="header__btns">
+            <button class="btn"><a href="#contact">Get in Touch</a></button>
+            <a href="{{ info.resume }}" download>Download CV</a>
+        </div>
+    </header>
+    {% endfor %}
+    <section class="section__container skill__container">
+        <h2>TOOLS I USE</h2>
+        
+        <ul class="skill__flex">
+            {% for tool in skills %}
+            <li>
+                <span><i>{{ tool.tool_name}}</i></span>
+            </li>
+            {% endfor %}
+        </ul>
+        
+    </section>
+
+    <!-- About Me Section -->
+    <section class="about__me">
+        <div class="section__container">
+            {% for ab in about %}
+            <div class="about__me__container">
+                <div class="about__me__image">
+                    <img src="{{ ab.image.url }}" alt="Faith bolanle">
+                </div>
+                <div class="about__me__content">
+                    <h2>About Me</h2>
+                    <p>
+                        {{ab.about}}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+
+    <section class="section__container project__container" id="project">
+        <h2>PROJECTS</h2>
+        <div class="project__grid">
+            {% for proj in projects %}
+            <div class="project__card">
+                <img src="{{ proj.project_image.url }}" alt="project" />
+                <div class="project__card__details">
+                    <div>
+                        <p>{{ proj.project_description | truncatewords:20}}</p>
+                        <h4>{{ proj.project_title }}</h4>
+                    </div>
+                    <a href="{% url 'project_detail' proj.pk %}"><i class="ri-arrow-right-up-line"></i></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="section__container experience__container" id="experience">
+        <h2>EXPERIENCE</h2>
+        <ul class="experience__list">
+        {% for exp in experience%}
+            <li>
+                <div class="experience__header">
+                    <div>
+                        <h3>{{ exp.company }} > </h3>
+                        <h4>{{ exp.position }}</h4>
+                    </div>
+                    <p>{{ exp.start_date}} - {% if not exp.current %}
+                    {{ exp.end_date }}
+                    {% else %}
+                    {{ exp.current }}
+                    {% endif %}</p>
+                </div>
+                <p>
+                    {{exp.description}}
+                </p>
+            </li>
+        {% endfor %}
+        </ul>
+    </section>
+
+    <section class="section__container experience__container" id="experience">
+            <h2>Education</h2>
+            <ul class="experience__list">
+            {% for edu in education %}
+                <li>
+                    <div class="experience__header">
+                        <div>
+                            <h3>{{ edu.institution }} > </h3>
+                            <h4>{{ edu.degree }} {{ edu.field_of_study }}</h4>
+                        </div>
+                        <p>{{ edu.start_date}} - {{ edu.end_date }}</p>
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+    </section>
+
+
+
+    <footer>
+        <div class="section__container footer__container" id="contact">
+            <h2>Contact</h2>
+            <p>
+                I'd love to hear from you! Whether you have a project in mind, a
+                question about my work, or just want to connect, feel free to reach
+                out. You can contact me via email or through my social media channels.
+                I am always excited to collaborate with like-minded individuals and
+                explore new opportunities.
+            </p>
+            <div class="mail__to">
+                <a href="mailto:faith.bolanle@yahoo.com">
+                    <span><i class="ri-mail-line"></i></span>
+                    faith.bolanle@yahoo.com
+                </a>
+            </div>
+            <ul class="footer__socials">
+                {% for social in socials %}
+                <li>
+                    <a href="{{ social.linkedin }}"><i class="ri-linkedin-fill"></i></a>
+                </li>
+                <li>
+                    <a href="{{ social.twitter }}"><i class="ri-twitter-x-fill"></i></a>
+                </li>
+                <li>
+                <a href="{{ social.github }}" ><i class="ri-github-fill"></i></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="{% static 'js/style.js' %}"></script>
+
+{% endblock %}
